@@ -11,7 +11,7 @@ A model that is able to detect guns in images and videos.
 
 Clone the project
 ```
-git clone
+git clone https://github.com/BecayeSoft/Guns-Detection-YOLOv8
 ```
 
 Install the requirements

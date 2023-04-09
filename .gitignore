@@ -7,3 +7,5 @@ Lib
 share
 Scripts\
 credentials.env
+.comet.config
+pyvenv.cfg
