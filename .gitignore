@@ -1,0 +1,9 @@
+# created by virtualenv automatically
+.ipynb_checkpoints
+datasets
+downloads
+Guns-3
+Lib
+share
+Scripts\
+credentials.env

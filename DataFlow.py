@@ -1,7 +1,9 @@
 import os
-os.environ["HOME"] = "C:/Users/balde"           # fix Roboflow issue
+
+os.environ["HOME"] = "C:/Users/balde"  # fix Roboflow issue
 from roboflow import Roboflow
 import shutil
+from dotenv import load_dotenv
 
 
 class DataFlow:
@@ -14,13 +16,16 @@ class DataFlow:
 
     def __init__(self, workspace="yolo-xkggu", project="guns-mms73", version=3):
         """
-        Load the `project` from roboflow
+        Load the specified `project` from roboflow
 
         :param workspace: roboflow workspace
         :param project: project id
         """
-        api_key = "Euq06w1v1ORqdMJA7tLX"
-        rf = Roboflow(api_key)
+
+        load_dotenv('credentials.env')
+        key = os.getenv('ROBOFLOW_API_KEY')
+        rf = Roboflow(key)
+
         self.project = rf.workspace(workspace).project(project)
         self.version = version
 
@@ -34,6 +39,7 @@ class DataFlow:
         :return: `(dataset, data_yaml_path)` the roboflow dataset and the path to
         the data.yaml file which contains information for training the model.
         """
+
         dataset = self.project.version(self.version).download("yolov8")
         original_dir = f"{dataset.name}-{dataset.version}"
         dataset_dir = "datasets/"
@@ -56,9 +62,10 @@ class DataFlow:
         """
         Load the model from Roboflow
         """
+
         self.model = self.project.version(self.version).model
 
-    def predict(self, data,  confidence=40, overlap=30, save=True):
+    def predict(self, data, confidence=40, overlap=30, save=True):
         """
         Predict the data.
 
@@ -68,6 +75,7 @@ class DataFlow:
         :param save:
         :return: the result of the prediction
         """
+
         result = self.model.predict(data, confidence=confidence, overlap=overlap).json()
         # print(model.predict("IMAGE_URL", hosted=True, confidence=40, overlap=30).json())
 
@@ -75,4 +83,3 @@ class DataFlow:
             self.model.predict(data, confidence=confidence, overlap=overlap).save("prediction.jpg")
 
         return result
-

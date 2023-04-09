@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="PYTHON_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/Lib/site-packages/keras/api/_v1/keras/datasets" />
+      <excludeFolder url="file://$MODULE_DIR$/Lib/site-packages/keras/api/_v2/keras/datasets" />
+      <excludeFolder url="file://$MODULE_DIR$/Lib/site-packages/keras/api/keras/datasets" />
+      <excludeFolder url="file://$MODULE_DIR$/Lib/site-packages/keras/datasets" />
+      <excludeFolder url="file://$MODULE_DIR$/Lib/site-packages/scipy/datasets" />
+      <excludeFolder url="file://$MODULE_DIR$/Lib/site-packages/torch/include/torch/csrc/api/include/torch/data/datasets" />
+      <excludeFolder url="file://$MODULE_DIR$/Lib/site-packages/torchvision/datasets" />
+      <excludeFolder url="file://$MODULE_DIR$/Lib/site-packages/ultralytics/datasets" />
+      <excludeFolder url="file://$MODULE_DIR$/.ipynb_checkpoints" />
+      <excludeFolder url="file://$MODULE_DIR$/datasets" />
+      <excludeFolder url="file://$MODULE_DIR$/downloads" />
+      <excludeFolder url="file://$MODULE_DIR$/Guns-3" />
+      <excludeFolder url="file://$MODULE_DIR$/Lib/site-packages/comet_ml/scripts" />
+      <excludeFolder url="file://$MODULE_DIR$/Lib/site-packages/torch/share" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

@@ -1,15 +1,18 @@
 from ultralytics import YOLO
 from DataFlow import DataFlow
 from Model import Model
-# from PIL import Image
-# import cv2
-# import matplotlib.pyplot as plt
-# import shutil
+from Monitor import Monitor
+
 
 
 # Load the data
 flow = DataFlow(version=3)
 dataset, data_yaml_path = flow.load_dataset()
+
+# ------------------------------------------------------
+# Training
+# Load the model's weights, evaluate it, export it
+# ------------------------------------------------------
 
 # Load model's weights
 model = Model()
@@ -26,9 +29,15 @@ model.evaluate()
 new_image = Image.open("assets/test.jpg")
 model.predict_image(image=new_image)
 
-
-# tensorboard
-# !tensorboard --logdir runs/detect/train5
-
 # Export the model
 model.export(format='saved_model')
+
+
+# -------------------------------------------------------------
+# Monitoring
+# Log hyperparameters, performance metrics, and upload the model
+# -------------------------------------------------------------
+monitor = Monitor(project_name='Guns-Detecions-YOLOv8')
+monitor.log_hyper_parameters(model.hyper_parameters)
+monitor.log_performance_metrics(model.validation_results)
+monitor.upload_model(path='runs/detect/train18/weights/best.pt', name='guns_model')

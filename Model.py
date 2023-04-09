@@ -12,6 +12,7 @@ class Model:
 
     def __init__(self):
         self.model = None
+        self.hyper_parameters = {}
         self.validation_results = None
 
     def build(self, pretrained, model=None):
@@ -54,7 +55,6 @@ class Model:
 
     def fit(self, data, epochs=10, patience=3, batch_size=16, img_size=640, save=True, optimizer='SGD', verbose=False,
             seed=123, resume=False, lr0=0.01, lrf=0.01, dropout=0.0):
-
         """
         Train the model on the `data`.
 
@@ -72,6 +72,16 @@ class Model:
         :param lrf: final learning rate (lr0 * lrf)
         :param dropout: use dropout regularization (classify train only)
         """
+
+        self.hyper_parameters.update({
+            'epochs': epochs,
+            'batch size': batch_size,
+            'image size': imgsz,
+            'optimizer': optimizer,
+            'learning rate initial': lr0,
+            'learning rate final': lrf,
+            'dropout': dropout
+        })
 
         self.model.train(data=data, epochs=epochs, patience=patience, batch=batch_size, imgsz=img_size, save=save,
                          optimizer=optimizer, verbose=verbose, seed=seed, resume=resume, lr0=lr0, lrf=lrf,
@@ -93,6 +103,8 @@ class Model:
         :param: imgsz: image size. 640 by default.
         :param: plots: if True, show plots during training.
         """
+
+        self.hyper_parameters.update({'validation_confidence_threshold': conf})
 
         self.validation_results = self.model.val(split=split, batch=batch, conf=conf, save_hybrid=save_hybrid,
                                                  save_json=save_json, iou=iou, max_det=max_detect)
@@ -122,6 +134,8 @@ class Model:
 
         :returns results: the results of the prediction.
         """
+
+        self.hyper_parameters.update({'prediction_confidence_threshold': conf})
 
         results = self.model.predict(source=source, conf=conf, stream=stream, save=True, save_txt=save_txt,
                                      save_conf=save_conf, line_thickness=line_thickness)
