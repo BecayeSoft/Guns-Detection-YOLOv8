@@ -25,6 +25,13 @@ pip install requirements.txt
 train a YOLOv8 model using `Model.py` on the dataset, and exports the model. <br>
 Finally, it logs the model to [Comet](https://www.comet.com/) using `Monitor.py`.
 
+
+### ImageDownLoader.py
+A class that contains methods to download images from Google, unsplash and pixabay.
+
+### download_image.py
+A script that download images using `ImageDownLoader.py`.
+
 ### DataFlow.py
 A class to load the dataset from [Roboflow](https://roboflow.com/).<br>
 Additionally, it contains two methods to load a [Roboflow](https://roboflow.com/) model
