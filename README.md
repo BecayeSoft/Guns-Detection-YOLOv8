@@ -1,10 +1,13 @@
 # Guns Detection with YOLOv8
+
+⚠️ This repository is now part of the project [Gun-Detection-Project](https://github.com/BecayeSoft/Gun-Detection-Project)
+
 A model that is able to detect guns in images and videos.
 
 - [x] Build the model (YOLOv8 Ultralytics | Python)
-- [ ] Integrate the model to the bakcend (Flask API)
-- [ ] Build the front end application (Angular)
-- [ ] Freeze requirements
+- [x] Integrate the model to the bakcend (Flask API)
+- [x] Build the front end application (Angular)
+- [x] Freeze requirements
 
 
 ## Setup
