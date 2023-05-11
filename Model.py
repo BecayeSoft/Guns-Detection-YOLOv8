@@ -8,12 +8,11 @@ class Model:
     A class to build, train and evaluate YOLOv8
     """
 
-    COLORS = {'red': (0, 0, 255), 'green': (0, 255, 0), 'blue': (255, 0, 0)}
-
     def __init__(self):
         self.model = None
         self.hyper_parameters = {}
         self.validation_results = None
+        self.COLORS = {'red': (0, 0, 255), 'green': (0, 255, 0), 'blue': (255, 0, 0)}
 
     def build(self, pretrained, model=None):
         """
@@ -146,19 +145,19 @@ class Model:
         """
         Show the image with the predicted boxes.
 
-        :param pred_results: the results of the prediction. They are returned by `modelpredict()`
-        :param title: the title of the image
+        :param color: the color used to draw the predictions
+        :param image: the image used to make inference.
         :return: pred_image: an image with predicted bounding boxes.
         """
 
-        if color in COLORS.keys():
-            color = COLORS.get(color)
+        if color in self.COLORS.keys():
+            color = self.COLORS.get(color)
         else:
-            color = COLORS.get('red')
+            color = self.COLORS.get('red')
 
-        # pred_image = pred_results[0].plot()
-        pred_results = self.predict(source=image)
-        pred_image = self.draw_predicted_boxes(pred_results, color=color)
+        pred_image = pred_results[0].plot()
+        # pred_results = self.predict(source=image)
+        # pred_image = self.draw_predicted_boxes(pred_results, color=color)
 
         return pred_image
 
@@ -169,12 +168,13 @@ class Model:
         Make inference on a video and draw predicted bounding boxes.
 
         :param video_path: a video
+        :param title: the title of the frame used to show the video
         """
 
-        if color in COLORS.keys():
-            color = COLORS.get(color)
+        if color in self.COLORS.keys():
+            color = self.COLORS.get(color)
         else:
-            color = COLORS.get('red')
+            color = self.COLORS.get('red')
 
         cap = cv2.VideoCapture(video_path)
 
@@ -214,29 +214,41 @@ class Model:
         :param pred_results: the results of the prediction. They are returned by `modelpredict()`
         :return: predicted_image: the image with predicted boxes.
         """
-        if color in COLORS.keys():
-            color = COLORS.get(color)
+        if color in self.COLORS.keys():
+            color = self.COLORS.get(color)
         else:
-            color = COLORS.get('red')
+            color = self.COLORS.get('red')
 
         predicted_image = None
 
         # draw the predicted bounding boxes in the image
         for pred in pred_results:
             # get bounding box coordinates
-            bbox = pred.boxes.xywh.tolist()[0]
-            bbox = np.array(bbox, dtype=int)
 
-            original_image = pred.orig_img
+            # check if gun coordinates are present
+            if pred.boxes.xywh.tolist():
+                bbox = pred.boxes.xywh.tolist()[0]
+                bbox = np.array(bbox, dtype=int)
 
-            # x and y are the center of the box, so we put the at the top left
-            w = bbox[2]
-            h = bbox[3]
-            x = int(bbox[0] - w / 2)
-            y = int(bbox[1] - h / 2)
+                original_image = pred.orig_img
 
-            # draw the bounding box
-            predicted_image = cv2.rectangle(original_image, (x, y), (x + w, y + h), color, 2)
+                # x and y are the center of the box, so we put the at the top left
+                w = bbox[2]
+                h = bbox[3]
+                x = int(bbox[0] - w / 2)
+                y = int(bbox[1] - h / 2)
+
+                # draw the bounding box
+                predicted_image = cv2.rectangle(original_image, (x, y), (x + w, y + h), color, 2)
+
+                # draw class name and confidence
+                class_name = pred.names.get(0)
+                confidence = np.array(pred.boxes.conf)[0]
+                confidence = np.round(confidence * 100, 2)
+                text = class_name + ': ' + str(confidence)
+
+                cv2.putText(img=predicted_image, text=text, org=(x, y-10), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=0.5,
+                    color=color, thickness=1, lineType=cv2.LINE_AA)
 
         return predicted_image
 
@@ -249,7 +261,7 @@ class Model:
         :return:
         """
 
-        cv2.imshow(title, pred_image)
+        cv2.imshow(title, image)
         cv2.waitKey(0)
         cv2.destroyAllWindows()
 

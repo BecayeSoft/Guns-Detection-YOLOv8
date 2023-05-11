@@ -4,7 +4,6 @@ from Model import Model
 from Monitor import Monitor
 
 
-
 # Load the data
 flow = DataFlow(version=3)
 dataset, data_yaml_path = flow.load_dataset()
@@ -27,10 +26,11 @@ model.evaluate()
 
 # Predict new image
 new_image = Image.open("assets/test.jpg")
-model.predict_image(image=new_image)
+# model.predict_image(image=new_image)
+model.predict_video(video_path="C:/Users/balde/OneDrive/Bureau/pexels-karolina-grabowska-5243141-1920x1080-50fps.mp4")
 
 # Export the model
-model.export(format='saved_model')
+model.export(format='onnx')
 
 
 # -------------------------------------------------------------

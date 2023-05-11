@@ -16,6 +16,8 @@
       <excludeFolder url="file://$MODULE_DIR$/Guns-3" />
       <excludeFolder url="file://$MODULE_DIR$/Lib/site-packages/comet_ml/scripts" />
       <excludeFolder url="file://$MODULE_DIR$/Lib/site-packages/torch/share" />
+      <excludeFolder url="file://$MODULE_DIR$/Lib" />
+      <excludeFolder url="file://$MODULE_DIR$/share" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

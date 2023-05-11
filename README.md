@@ -48,3 +48,7 @@ A class to monitor the model's performances using [Comet](https://www.comet.com/
 
 By default, the model is automatically logged to [Comet](https://www.comet.com/). 
 This class allows us to create custom logs.
+
+## Model Graph
+
+![Model](assets/Model.svg)

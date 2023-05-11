@@ -1,0 +1,30 @@
+
+Benchmarks complete for best.pt on coco8.yaml at imgsz=640 (240.43s)
+                   Format Status❔  Size (MB)  metrics/mAP50-95(B)  Inference time (ms/im)
+0                 PyTorch       ✅        5.9               0.0004                  133.23
+1             TorchScript       ✅       11.9               0.0003                  182.20
+2                    ONNX       ❎       11.7                  NaN                     NaN
+3                OpenVINO       ❌       11.7                  NaN                     NaN
+4                TensorRT       ❌        0.0                  NaN                     NaN
+5                  CoreML       ❎       11.6                  NaN                     NaN
+6   TensorFlow SavedModel       ❌        0.0                  NaN                     NaN
+7     TensorFlow GraphDef       ❌        0.0                  NaN                     NaN
+8         TensorFlow Lite       ❌        0.0                  NaN                     NaN
+9     TensorFlow Edge TPU       ❌        0.0                  NaN                     NaN
+10          TensorFlow.js       ❌        0.0                  NaN                     NaN
+11           PaddlePaddle       ❌        0.0                  NaN                     NaN
+
+Benchmarks complete for best.pt on coco8.yaml at imgsz=160 (165.65s)
+                   Format Status❔  Size (MB)  metrics/mAP50-95(B)  Inference time (ms/im)
+0                 PyTorch       ✅        5.9               0.0029                   21.50
+1             TorchScript       ✅       11.8               0.0026                   58.76
+2                    ONNX       ❎       11.5                  NaN                     NaN
+3                OpenVINO       ❌       11.5                  NaN                     NaN
+4                TensorRT       ❌        0.0                  NaN                     NaN
+5                  CoreML       ❎       11.5                  NaN                     NaN
+6   TensorFlow SavedModel       ❌        0.0                  NaN                     NaN
+7     TensorFlow GraphDef       ❌        0.0                  NaN                     NaN
+8         TensorFlow Lite       ❌        0.0                  NaN                     NaN
+9     TensorFlow Edge TPU       ❌        0.0                  NaN                     NaN
+10          TensorFlow.js       ❌        0.0                  NaN                     NaN
+11           PaddlePaddle       ❌        0.0                  NaN                     NaN
